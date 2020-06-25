@@ -3,9 +3,16 @@
   hosts: all
   gather_facts: false
   tasks:
+    - command: hostname
+      register: host_output
+
+    - debug: var=host_output
+
     - name: backing up running config
       ios_config:
          backup: yes
+         backup_options:
+           dir_path: /tmp/backup
       register: backup_output
 
 
