@@ -1,0 +1,12 @@
+---
+- name: backup ios routers/switch
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: backing up running config
+      ios_config:
+         backup: yes
+      register: backup_output
+
+
+    - debug: var=backup_output
