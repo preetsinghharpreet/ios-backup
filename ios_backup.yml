@@ -2,11 +2,17 @@
 - name: backup ios routers/switch
   hosts: all
   gather_facts: false
+  vars:
+   project_path: "{{ lookup('env', 'PWD') }}"
   tasks:
-    - command: hostname
-      register: host_output
+          #- command: hostname
+          # register: host_output
 
-    - debug: var=host_output
+      #- debug: var=host_output
+    - command: "ls {{ project_path }}"
+      register: ls_output
+
+    - debug: var=ls_output
 
     - name: backing up running config
       ios_config:
@@ -14,6 +20,11 @@
          backup_options:
            dir_path: /tmp/backup
       register: backup_output
+
+    - command: "ls {{ project_path }}"
+      register: ls_post_output
+
+    - debug: var=ls_post_output
 
 
     - debug: var=backup_output
