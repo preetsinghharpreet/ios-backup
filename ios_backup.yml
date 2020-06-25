@@ -28,3 +28,7 @@
 
 
     - debug: var=backup_output
+
+    - copy:
+        content: "sample"
+        dest: /tmp/file.txt
