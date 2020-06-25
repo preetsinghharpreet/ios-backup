@@ -1,7 +1,7 @@
 ---
 - name: backup ios routers/switch
   hosts: all
-  gather_facts: false
+  #gather_facts: false
   become: true
   vars:
    project_path: "{{ lookup('env', 'PWD') }}"
@@ -18,8 +18,9 @@
     - name: backing up running config
       ios_config:
          backup: yes
-         # backup_options:
+         backup_options:
                  #dir_path: /var/lib/awx
+            filename: "{{ inventory_hostname }}.bkp"
       register: backup_output
 
     - command: "ls {{ project_path }}"
