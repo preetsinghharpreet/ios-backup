@@ -18,7 +18,7 @@
       ios_config:
          backup: yes
          backup_options:
-           dir_path: /tmp/backup
+           dir_path: /var/lib/awx
       register: backup_output
 
     - command: "ls {{ project_path }}"
@@ -29,6 +29,3 @@
 
     - debug: var=backup_output
 
-    - copy:
-        content: "sample"
-        dest: /tmp/file.txt
