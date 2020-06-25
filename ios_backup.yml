@@ -2,6 +2,7 @@
 - name: backup ios routers/switch
   hosts: all
   gather_facts: false
+  become: true
   vars:
    project_path: "{{ lookup('env', 'PWD') }}"
   tasks:
