@@ -18,8 +18,8 @@
     - name: backing up running config
       ios_config:
          backup: yes
-         backup_options:
-           dir_path: /var/lib/awx
+         # backup_options:
+                 #dir_path: /var/lib/awx
       register: backup_output
 
     - command: "ls {{ project_path }}"
