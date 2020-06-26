@@ -31,3 +31,6 @@
 
     - debug: var=backup_output
 
+    - pause:
+         minutes: 10
+
