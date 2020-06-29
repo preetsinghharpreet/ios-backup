@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  tasks:
-          - copy:
-                 content: "hello"
-                 dest: /tmp/hello.txt
