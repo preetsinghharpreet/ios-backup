@@ -4,17 +4,17 @@
   #gather_facts: false
   become: true
   vars:
-   project_path: "{{ lookup('env', 'PWD') }}"
+   #project_path: "{{ lookup('env', 'PWD') }}"
    network_backup_file:  /tmp/
   tasks:
           #- command: hostname
           # register: host_output
 
       #- debug: var=host_output
-    - command: "ls {{ project_path }}"
-      register: ls_output
+      #  - command: "ls {{ project_path }}"
+      #register: ls_output
 
-    - debug: var=ls_output
+          #- debug: var=ls_output
 
     - name: backing up running config
       ios_config:
@@ -35,16 +35,16 @@
       delegate_to: 192.168.21.42
       #remote_user: student
 
-    - command: "ls {{ project_path }}"
-      register: ls_post_output
+      #- command: "ls {{ project_path }}"
+      #register: ls_post_output
 
-    - debug: var=ls_post_output
+      # - debug: var=ls_post_output
 
 
-    - debug: var=backup_output
+      #- debug: var=backup_output
 
-    - debug: var=copy_result
+      # - debug: var=copy_result
 
-    - pause:
-         minutes: 2
+      #- pause:
+      #   minutes: 2
 
