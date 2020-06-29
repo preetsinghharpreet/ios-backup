@@ -1,6 +1,6 @@
 ---
 - name: backup ios routers/switch
-  hosts: all
+  hosts: routers
   #gather_facts: false
   become: true
   vars:
@@ -33,10 +33,7 @@
         dest: "{{ network_backup_file }}"
       register: copy_result
       delegate_to: 192.168.21.42
-      remote_user: student
-      #become: true
-      #become_user: root
-      #become_method: su
+      #remote_user: student
 
     - command: "ls {{ project_path }}"
       register: ls_post_output
@@ -49,5 +46,5 @@
     - debug: var=copy_result
 
     - pause:
-         minutes: 10
+         minutes: 2
 
