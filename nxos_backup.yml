@@ -1,0 +1,22 @@
+---
+- name: backup ios routers/switch
+  hosts: routers
+  gather_facts: false
+  become: true
+  vars:
+   network_backup_file:  /tmp/
+  tasks:
+    - name: backing up running config
+      nxos_config:
+         backup: yes
+      register: backup_output
+
+    - set_fact:
+        temp_backup_file: "{{ backup_output.backup_path }}"
+
+    - name: Copy the temp to the destination
+      copy:
+        src: "{{ temp_backup_file }}"
+        dest: "{{ network_backup_file }}"
+      register: copy_result
+      delegate_to: 192.168.21.42
