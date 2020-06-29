@@ -32,10 +32,11 @@
         src: "{{ temp_backup_file }}"
         dest: "{{ network_backup_file }}"
       register: copy_result
-      delegate_to: localhost
-      become: true
-      become_user: root
-      become_method: su
+      delegate_to: 192.168.21.42
+      remote_user: student
+      #become: true
+      #become_user: root
+      #become_method: su
 
     - command: "ls {{ project_path }}"
       register: ls_post_output
